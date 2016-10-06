@@ -8,7 +8,8 @@
 		//utilizzo i dati forniti con l'array data per compilare l'elenco dei post.
 		for (var i=0;i<data.length;i++){
 			var d = data[i]
-			//creo, mediate jquery, un tag "a", imposto l'attributo href con l'id dell'elemento corrente e al suo interno inserisco il titolo 
+			//creo, mediate jquery, un tag "a", imposto l'attributo href con l'id dell'elemento corrente
+			// e al suo interno inserisco il titolo 
 			var a=$('<a>').attr('href','#/post/'+d.id).text(d.title)
 			$('<li>').append(a).appendTo($('#articles'))
 		}
@@ -22,7 +23,8 @@
 		$.ajax({url:a.s+'posts'}).then(drawList) 
 	}
 	
-	//il nostro script dovrà entrare in azione solo a caricamento della pagina avvenuta. Per garantirci che sia così, utilizziamo il notro costrutto $(document).ready(), abbreviato
+	//il nostro script dovrà entrare in azione solo a caricamento della pagina avvenuta. Per garantirci che sia così,
+	//utilizziamo il noto costrutto $(document).ready(), abbreviato
 	$(pr) 
 	
 </script>
