@@ -13,10 +13,15 @@
     </article>
 </div>
 <script>
+	/**Funzione che cicla l'array delle foto
+	*/
 	var listPhotos=function(data){
 		if (!data.map) return //se non è presente il metodo map vuol dire che non è un array, per cui esco dalla funzione 
-		data.map(fillPhotos) //per ogni elemento dell'array richiamo la funzione fillPhotos, alla quale passo come argomento la singola foto (che è rappresentata come un oggetto)
+		data.map(fillPhotos) //per ogni elemento dell'array richiamo la funzione fillPhotos,
+		//alla quale passo come argomento la singola foto (che è rappresentata come un oggetto)
 	}
+	/**Funzione che popola e clona il modello #phototemplate creato nell'html
+	*/
 	var fillPhotos=function(d){
         console.log('d:',d)
 		if (Object(d)!==d) return //controllo se d è davvero un oggetto
