@@ -26,16 +26,26 @@
 			if (k && data[k]) $('.'+k).text(data[k])
 		}
 	}
+	/**Funzione che popola l'immagine con l'id ph, la nasconde, la mette in una w3-card, 
+	* le aggiunge l'attributo url dall'array data e aggiunge un effetto slideDown
+	*/
 	var fillImg=function(data){
 		$('#ph').hide().addClass('w3-card-4').attr('src',data.url).slideDown('slow')
 	}
+	/** Funzionzione che cicla l'array dai commenti
+	*/
 	var listComments=function(data){
 		if (!data.map) return //se non è presente il metodo map vuol dire che non è un array, per cui esco dalla funzione 
-		data.map(fillComments) //per ogni elemento dell'array richiamo la funzione fillComments, alla quale passo come argomento il singolo commento (che è un oggetto)
+		data.map(fillComments) //per ogni elemento dell'array richiamo la funzione fillComments, alla quale passo come argomento
+					//il singolo commento (che è un oggetto)
 	}
+	/**Funzione che popola il modello di commenti creato nell'html con 
+	*/
 	var fillComments=function(d){
 		if (Object(d)!==d) return //controllo se d è davvero un oggetto
-		//$('<li>').text(d.body).appendTo($('#comments')) //creo (in memoria) un tag LI, ne imposto il contenuto testuale con il valore corrispondente alla chiave "body" dell'oggetto d ed inserisco il tutto all'interno del tag esistente con id #comments
+		$('<li>').text(d.body).appendTo($('#comments'))
+		/*creo (in memoria) un tag LI, ne imposto il contenuto testuale con il valore corrispondente
+		alla chiave "body" dell'oggetto d ed inserisco il tutto all'interno del tag esistente con id #comments*/
 		var sel='#commentTemplate' //definisco il selettore del template che conterrà il commento
 		$(sel+' .name').text(d.name) //compilo i campi di mio interesse		 
 		$(sel+' .body').text(d.body)
@@ -48,7 +58,8 @@
 			 $('.w3-card-4').remove()
 			 return
 		}
-		//recupero il post con l'id passato come parametro in GET nell'url. L'ID era stato precedentemente memorizzato in una variabile globale
+		//recupero il post con l'id passato come parametro in GET nell'url. L'ID era stato precedentemente
+		//memorizzato in una variabile globale
 		$.ajax({url:a.s+'posts/'+a.id}).then(fillPost)
 		//recupero l'immagine con lo stesso id del post
 		$.ajax({url:a.s+'photos/'+a.id}).then(fillImg)
